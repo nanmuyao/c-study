@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+
+class String
+{
+    public:
+    String(const char *str = NULL);
+    String(const String &other);
+    ~ String(void);
+    String & operate =(const String &other); // 赋值函数
+    private:
+    char *m_data;
+};
+
+ String::String(const char *str = NULL)
+ {
+     if (str == NULl)
+     {
+        m_data = new char[1];
+        if(m_data)
+        {
+            *m_data = '\0';   
+        }
+     }
+     else
+     {
+         m_data = new char[strlen(str) + 1];
+         if(m_data)
+         {
+            strcpy(m_data,str);   
+         }
+     }
+ }
+
+String::String(const String &other)
+{
+    int length = strlen(other.m_data);
+    m_data = new char[length + 1];
+    strcpy(m_data,other.m_data);
+}
+
+String & String::operate =(const String &other)
+{
+    if(other.m_data == m_data)
+        return *this;
+    delete []m_data;
+    int length = strlen(other.m_data);
+    m_data = new char[length + 1];
+    strcpy(m_data, other.m_data);
+    return *this;
+}
+
+String::~String(void) 
+{
+    delete [] m_data;
+}
+//new 分配内存后最好加入是否为空的判断
+int main() {
+	cout  << "test\n";
+	return 0;
+}
