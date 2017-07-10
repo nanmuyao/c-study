@@ -1,0 +1,36 @@
+//
+//  内存四区.cpp
+//  常见面试题
+//
+//  Created by hanzhiqiang on 2016/11/5.
+//  Copyright © 2016年 hanzhiqiang. All rights reserved.
+//
+
+#include "内存四区.hpp"
+#include <stdlib.h>
+#include <iostream>
+#include<assert.h>
+
+using namespace std;
+
+char *myStrcpy(char *strDest,const char *strSrc)
+{
+//    assert(true);
+//    assert(false); //false error
+    assert((strDest!=NULL) && (strSrc !=NULL));
+    char *p = strDest;
+    while (*strSrc != '\0')
+    {
+        *strDest++ = *strSrc++;
+    }
+    *strDest = '\0';
+    return p;
+}
+
+int main()
+{
+    char buf[10];
+    char *p = NULL;
+    cout<< myStrcpy(buf,"abc") <<endl;
+    return 0;
+}
