@@ -1,3 +1,20 @@
+//
+//  string对象上的操作.hpp
+//  练习
+//
+//  Created by hanzhiqiang on 2017/7/15.
+//  Copyright © 2017年 hanzhiqiang. All rights reserved.
+//
+
+#include <stdio.h>
+#include <string>
+#include <iostream>
+
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+
 删除特定的字符串
 string str("(555) 555-5555");
 
@@ -49,4 +66,31 @@ int main()
     } while (iss);
 
     return 0;
+}
+
+//删除标点符号用for循环从命令行输入
+void deletePunc()
+{
+    string str;
+    string result;
+    while (cin >> str)
+    {
+        cout<<"str="<<str<<endl;
+        for (int index = 0; index < str.size();)
+        {
+            char c = str[index];
+            if (ispunct(c))
+            {
+                auto pos = str.find(c);
+                str.erase(str.begin() + pos);
+            }
+            else
+            {
+                index++;
+            }
+        }
+        //        cout<<result<<endl;
+        cout<<"去除标点符号后的字符str="<<str<<endl;
+        str.clear();
+    }
 }
