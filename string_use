@@ -1,0 +1,52 @@
+删除特定的字符串
+string str("(555) 555-5555");
+
+   char chars[] = "()-";
+
+   for (unsigned int i = 0; i < strlen(chars); ++i)
+   {
+      // you need include <algorithm> to use general algorithms like std::remove()
+      str.erase (std::remove(str.begin(), str.end(), chars[i]), str.end());
+   }
+
+   // output: 555 5555555
+   cout << str << endl;
+   
+#include <algorithm>
+str.erase(std::remove(str.begin(), str.end(), 'a'), str.end());
+
+按照特定的字符来分割字符串
+vector<string> mySplit(const string &text, char sep)
+{
+    std::istringstream ss(text);
+    std::string token;
+    
+    vector<string> InfoVector;
+    while(std::getline(ss, token, sep))
+    {
+        cout<<token<<endl;
+        InfoVector.push_back(token);
+    }
+    return InfoVector;
+}
+
+//按照空格来分割字符串
+#include <iostream>
+#include <sstream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string s("Somewhere down the road");
+    istringstream iss(s);
+
+    do
+    {
+        string subs;
+        iss >> subs;
+        cout << "Substring: " << substr << endl;
+    } while (iss);
+
+    return 0;
+}
