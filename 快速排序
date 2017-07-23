@@ -1,0 +1,51 @@
+//
+//  快速排序.hpp
+//  练习
+//
+//  Created by hanzhiqiang on 2017/7/23.
+//  Copyright © 2017年 hanzhiqiang. All rights reserved.
+//
+
+#ifndef _____hpp
+#define _____hpp
+
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+template<typename T>
+void quick_sort_recursive(T arr[], int start, int end)
+{
+    if (start >= end) return;
+    T mid = arr[end];
+    int left = start, right = end - 1;
+    while (left < right)
+    {
+        while (arr[left] < mid && left < right) left++;
+        while (arr[right] >= mid && left < right) right--;
+        std::swap(arr[left], arr[right]);
+    }
+    if (arr[left] >= arr[end])
+        std::swap(arr[left], arr[end]);
+    else
+        left++;
+    quick_sort_recursive(arr, start, left - 1);
+    quick_sort_recursive(arr, left + 1, end);
+}
+template<typename T> //整數或浮點數皆可使用,若要使用物件(class)時必須設定"小於"(<)、"大於"(>)、"不小於"(>=)的運算子功能
+void quick_sort(T arr[], int len) {
+    quick_sort_recursive(arr, 0, len - 1);
+}
+
+int main()
+{
+    int a[] = {1,4,2,3,5};
+    quick_sort(a, 5);
+    
+    for (int i = 0; i < 5; i++) {
+        cout<<a[i]<<endl;
+    }
+    return 0;
+}
+
+#endif /* _____hpp */
