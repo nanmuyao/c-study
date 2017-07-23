@@ -1,0 +1,51 @@
+//
+//  冒泡.hpp
+//  练习
+//
+//  Created by hanzhiqiang on 2017/7/23.
+//  Copyright © 2017年 hanzhiqiang. All rights reserved.
+//
+
+#ifndef ___hpp
+#define ___hpp
+
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+int main_maopao()
+{
+    
+    int i,j,t,n;
+    n = 5;
+    int a[] = {2,1,4,3,5};
+    
+    for (int i = 0; i < 5; i++)
+    {
+        cout<<a[i]<<endl;
+    }
+    cout<< '\n' <<endl;
+    
+    //冒泡排序的核心部分
+    for(i=1;i<=n-1;i++) //n个数排序，只用进行n-1趟
+    {
+        for(j=0;j<=n-i-1;j++) //从第1位开始比较直到最后一个尚未归位的数，想一想为什 么到n-i就可以了。
+        {
+            if(a[j]<a[j+1]) //比较大小并交换
+            {
+                cout<<"j+1="<<j+1<<endl;
+                t=a[j];
+                a[j]=a[j+1];
+                a[j+1]=t;
+            }
+        }
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        cout<<a[i]<<endl;
+    }
+    return 0;
+}
+
+#endif /* ___hpp */
