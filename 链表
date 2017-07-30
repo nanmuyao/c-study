@@ -1,0 +1,138 @@
+//
+//  链表.hpp
+//  练习
+//
+//  Created by hanzhiqiang on 2017/7/30.
+//  Copyright © 2017年 hanzhiqiang. All rights reserved.
+//
+
+#ifndef ___hpp
+#define ___hpp
+
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+#include <stdio.h>
+
+typedef struct node
+{
+    int data;
+    node *next;
+}Node;
+
+
+Node * createList()
+{
+    Node *node = (Node*)malloc(sizeof(Node));
+    node->next = NULL;
+    Node *p = node;
+    for (int i = 0; i < 5; i++)
+    {
+        Node *no = (Node *)malloc(sizeof(Node));
+        no->data = i;
+        p->next = no;
+        p = no;
+    }
+    return node;
+}
+
+void printList(Node *node)
+{
+    Node *p = node;
+    while (p) {
+        cout<<p->data<<endl;
+        p = p->next;
+    }
+    cout<<endl;
+}
+
+Node * insertList(Node *node, int pos,int val)
+{
+    
+    Node *p1 = node;
+    int j = 0;
+    
+    while(p1 && j < pos)
+    {
+        p1 = p1->next;
+        j++;
+    }
+    
+    Node *no = (Node*)malloc(sizeof(Node));
+    no->data = val;
+    no->next = p1->next;
+    p1->next = no;
+    
+    return node;
+}
+
+Node * delElement(Node *node, int pos)
+{
+    Node *p = node;
+    int j = 0;
+    while (p && j < pos) {
+        p = p->next;
+        j++;
+    }
+    
+    if (p->next) {
+        Node *p1 = p->next;
+        p->next = p->next->next;
+        free(p1);
+    }
+    
+    return node;
+}
+
+Node * getElement(Node *node, int pos)
+{
+    Node *p1 = node;
+    
+    while (p1->next) {
+        
+        p1 = p1->next;
+    }
+    
+    return NULL;
+}
+
+int ds_search(Node *pNode, int elem)
+{
+    return 1;
+}
+
+int getMidNode(Node *pNode, int val)
+{
+    Node *mid = pNode;
+    Node *search = pNode;
+    while (search->next != NULL) {
+        if (search->next->next != NULL) {
+            search = search->next->next;
+            mid = mid->next;
+        }
+        else
+        {
+            search = search->next;
+            mid = mid->next;
+        }
+    }
+    
+    
+    
+    return 1;
+}
+
+int main_lianbiao()
+{
+    Node *node = createList();
+    printList(node);
+    insertList(node, 2, 100);
+    printList(node);
+    delElement(node, 2);
+    printList(node);
+    return 0;
+}
+
+
+#endif /* ___hpp */
