@@ -1,0 +1,52 @@
+//
+//  yuesefu.hpp
+//  练习
+//
+//  Created by hanzhiqiang on 2017/8/27.
+//  Copyright © 2017年 hanzhiqiang. All rights reserved.
+//
+
+#ifndef yuesefu_hpp
+#define yuesefu_hpp
+
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+typedef struct linkNode
+{
+    linkNode *next;
+    int value;
+}LinkNode, *LinkNodePtr;
+
+LinkNodePtr createCycle(int total)
+{
+    int index = 1;
+    LinkNodePtr head = NULL, curr = NULL, prev = NULL;
+    head = (LinkNodePtr)malloc(sizeof(LinkNode));
+    prev = head;
+    head->value = index;
+    
+    while(--total > 0)
+    {
+        curr = (LinkNodePtr)malloc(sizeof(LinkNode));
+        curr->value = ++index;
+        prev->next = curr;
+        prev = curr;
+    }
+    curr->next = head;
+    
+    return head;
+}
+
+int main()
+{
+    int a = 1;
+    int b = a++;
+    
+    
+    cout<<a<<endl;
+    cout<<b<<endl;
+}
+
+#endif /* yuesefu_hpp */
